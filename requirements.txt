@@ -1,6 +1,7 @@
 pydantic
 beautifulsoup4
 tracardi_plugin_sdk
+tracardi
 lxml
 
 python-dotenv

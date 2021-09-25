@@ -6,12 +6,8 @@ from tracardi_smtp_connector.plugin import SmtpDispatcherAction
 load_dotenv()
 
 init = {
-    'server': {
-        'smtp': "smtp.gmails.com",
-        'port': 587,
-        'username': os.getenv('LOGIN'),
-        'password': os.getenv('PASSWORD'),
-        'timeout': 2
+    'source': {
+        'id': 'cde09c91-9ae4-4bdc-ab58-ced3ab4e441a'
     },
     'message': {
         "send_to": os.getenv('TO'),
