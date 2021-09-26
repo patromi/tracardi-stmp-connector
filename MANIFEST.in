@@ -1,2 +1,0 @@
-recursive-include tracardi_smtp_connector/model *
-recursive-include tracardi_smtp_connector/service *
