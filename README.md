@@ -4,8 +4,7 @@ The purpose of this plugin is send emails using SMTP servers. The plugin support
 
 # Configuration
 
-This node requires configuration. In order to read timezone you must define path to time zone. Use dot notation to do
-that.
+This node requires configuration.
 
 * smtp: smtp.gmail.com, - Choose a smtp server 
 * port: 587, - Select the port on which smtp will run 
