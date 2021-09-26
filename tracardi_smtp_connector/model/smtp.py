@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
+from tracardi.domain.entity import Entity
 
 
 class Smtp(BaseModel):
@@ -19,5 +20,5 @@ class Message(BaseModel):
 
 
 class Configuration(BaseModel):
-    server: Smtp
+    source: Entity
     message: Message
