@@ -8,8 +8,8 @@ This node requires configuration.
 
 ## Message configuration
 
-* to: None, - Choose `email` recipient
-* from: None, - Choose your `email`
+* to: None, - Choose `e-mail` recipient
+* from: None, - Choose your `e-mail`
 * replyTo: None,- Select to whom the reply should be sent
 * title: Select a `title`,
 * message: Enter your `message`, HTML is allowed
