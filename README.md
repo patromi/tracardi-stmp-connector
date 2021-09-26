@@ -1,6 +1,6 @@
 # SMTP Plugin
 
-The purpose of this plugin is to send emails using SMTP servers. The plugin supports sending HTML messages.
+The purpose of this plugin is to send e-mail using SMTP servers. The plugin supports sending HTML messages.
 
 # Configuration
 
@@ -8,16 +8,16 @@ This node requires configuration.
 
 ## Message configuration
 
-* to: None, - Choose email recipient
-* from: None, - Choose your email
+* to: None, - Choose `email` recipient
+* from: None, - Choose your `email`
 * replyTo: None,- Select to whom the reply should be sent
-* title: Select a Title Message,
-* message: Enter your message, HTML is allowed
+* title: Select a `title`,
+* message: Enter your `message`, HTML is allowed
 
 ## Resource configuration
 
 This node needs SMTP server credentials that are defined in resources. To access defined credentials you will have to
-pass resource.id
+pass resource id.
 
 ## Example of action configuration
 
