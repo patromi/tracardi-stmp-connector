@@ -5,6 +5,8 @@ from tracardi_smtp_connector.model.smtp import Configuration, Smtp
 from tracardi_smtp_connector.service.sendman import PostMan
 from tracardi.service.storage.driver import storage
 from tracardi.domain.resource import Resource
+from tracardi_dot_notation.dot_accessor import DotAccessor
+from tracardi_dot_notation.dot_template import DotTemplate
 
 
 class SmtpDispatcherAction(ActionRunner):
@@ -22,7 +24,9 @@ class SmtpDispatcherAction(ActionRunner):
 
     async def run(self, payload):
         try:
-            self.post.send(self.config.message)
+            dot = DotAccessor(self.profile, self.session, payload, self.event, self.flow)
+            template = DotTemplate()
+            self.post.send(template.render(self.config.message, dot))
             return Result(port='payload', value=True)
         except Exception as e:
             self.console.warning(repr(e))
@@ -49,7 +53,7 @@ def register() -> Plugin:
                     "message": None
                 }
             },
-            version='0.1.1',
+            version='0.1.2',
             license="MIT",
             author="iLLu"
 

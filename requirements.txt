@@ -1,6 +1,7 @@
 pydantic
 beautifulsoup4
-tracardi_plugin_sdk
+tracardi-plugin-sdk
+tracardi-dot-notation>=0.6.4
 tracardi
 lxml
 
