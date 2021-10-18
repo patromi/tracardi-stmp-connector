@@ -66,4 +66,4 @@ This node does not process input payload.
 
 # Output
 
-This node returns True if mail was sent or false if there was an error.
+This node returns `true` if mail was sent or `false` if there was an error.

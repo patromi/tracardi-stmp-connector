@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='tracardi-smtp-connector',
-    version='0.1.2',
+    version='0.1.3',
     description='The purpose of this plugin is sending mail within tracardi system.',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -16,8 +16,8 @@ setup(
         'pydantic',
         'beautifulsoup4',
         'tracardi-plugin-sdk',
-        'tracardi-dot-notation',
-        'tracardi',
+        'tracardi-dot-notation>=0.6.4',
+        'tracardi>=0.6.18',
         ],
     classifiers=[
         "Programming Language :: Python :: 3",

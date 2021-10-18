@@ -27,10 +27,10 @@ class SmtpDispatcherAction(ActionRunner):
             dot = DotAccessor(self.profile, self.session, payload, self.event, self.flow)
             template = DotTemplate()
             self.post.send(template.render(self.config.message, dot))
-            return Result(port='payload', value=True)
+            return Result(port='payload', value={"result": True})
         except Exception as e:
             self.console.warning(repr(e))
-            return Result(port='payload', value=False)
+            return Result(port='payload', value={"result": False})
 
 
 def register() -> Plugin:
@@ -53,7 +53,8 @@ def register() -> Plugin:
                     "message": None
                 }
             },
-            version='0.1.2',
+            manual="smtp_connector_action",
+            version='0.1.3',
             license="MIT",
             author="iLLu"
 
