@@ -1,4 +1,4 @@
-from tracardi_plugin_sdk.domain.register import Plugin, Spec, MetaData
+from tracardi_plugin_sdk.domain.register import Plugin, Spec, MetaData, Form, FormGroup, FormField, FormComponent
 from tracardi_plugin_sdk.action_runner import ActionRunner
 from tracardi_plugin_sdk.domain.result import Result
 from tracardi_smtp_connector.model.smtp import Configuration, Smtp
@@ -9,11 +9,15 @@ from tracardi_dot_notation.dot_accessor import DotAccessor
 from tracardi_dot_notation.dot_template import DotTemplate
 
 
+def validate(config: dict) -> Configuration:
+    return Configuration(**config)
+
+
 class SmtpDispatcherAction(ActionRunner):
 
     @staticmethod
     async def build(**kwargs) -> 'SmtpDispatcherAction':
-        config = Configuration(**kwargs)
+        config = validate(kwargs)
         source = await storage.driver.resource.load(config.source.id)
         plugin = SmtpDispatcherAction(config, source)
         return plugin
@@ -53,14 +57,63 @@ def register() -> Plugin:
                     "message": None
                 }
             },
+            form=Form(groups=[
+                FormGroup(
+                    fields=[
+                        FormField(
+                            id="source",
+                            name="SMTP connection resource",
+                            description="Select SMTP server resource. Credentials from selected resource will be used "
+                                        "to connect the service.",
+                            required=True,
+                            component=FormComponent(type="resource", props={"label": "resource"})
+                        )
+                    ]
+                ),
+                FormGroup(
+                    fields=[
+                        FormField(
+                            id="message.send_to",
+                            name="E-mail to send from",
+                            description="Type path to E-mail or e-mail itself.",
+                            component=FormComponent(type="dotPath", props={"label": "Sender e-mail"})
+                        ),
+                        FormField(
+                            id="message.send_from",
+                            name="Recipient e-mail",
+                            description="Type path to E-mail or e-mail itself.",
+                            component=FormComponent(type="dotPath", props={"label": "Recipient e-mail"})
+                        ),
+                        FormField(
+                            id="message.reply_to",
+                            name="Reply to e-mail",
+                            description="Type path to E-mail or e-mail itself.",
+                            component=FormComponent(type="dotPath", props={"label": "Reply to e-mail"})
+                        ),
+                        FormField(
+                            id="message.title",
+                            name="Subject",
+                            description="Type e-mail subject.",
+                            component=FormComponent(type="text", props={"label": "Subject"})
+                        ),
+                        FormField(
+                            id="message.message",
+                            name="Message",
+                            description="Type e-mail message.",
+                            component=FormComponent(type="textarea", props={"label": "Message"})
+                        )
+                    ]
+                ),
+            ]),
+
             manual="smtp_connector_action",
-            version='0.1.3',
+            version='0.1.4',
             license="MIT",
             author="iLLu"
 
         ),
         metadata=MetaData(
-            name='Send mail',
+            name='Send e-mail via SMTP',
             desc='Send mail via defined smtp server.',
             type='flowNode',
             width=200,

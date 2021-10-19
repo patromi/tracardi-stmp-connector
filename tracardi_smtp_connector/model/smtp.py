@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 from typing import Optional
 from tracardi.domain.entity import Entity
 
@@ -14,9 +14,21 @@ class Smtp(BaseModel):
 class Message(BaseModel):
     send_to: str
     send_from: str
-    title: Optional[str] = ''
+    title: str
     reply_to: Optional[str] = None
-    message: Optional[str] = ''
+    message: str
+
+    @validator("title")
+    def title_must_not_be_empty(cls, value):
+        if len(value) < 1:
+            raise ValueError("Title can not be empty.")
+        return value
+
+    @validator("message")
+    def message_must_not_be_empty(cls, value):
+        if len(value) < 1:
+            raise ValueError("Message can not be empty.")
+        return value
 
 
 class Configuration(BaseModel):
