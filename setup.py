@@ -18,6 +18,7 @@ setup(
         'tracardi-plugin-sdk>=0.6.21',
         'tracardi-dot-notation>=0.6.4',
         'tracardi>=0.6.18',
+        'lxml'
         ],
     classifiers=[
         "Programming Language :: Python :: 3",

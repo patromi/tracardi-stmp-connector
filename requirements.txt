@@ -6,3 +6,4 @@ tracardi
 lxml
 
 python-dotenv
+twine
